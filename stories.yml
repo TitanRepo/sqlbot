@@ -1,0 +1,57 @@
+version: "3.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: Query Data 1
+  steps:
+  - intent: query_info
+  - action: action_user_details
+  - action: utter_did_that_help
+  - checkpoint: affirm_checkoint
+
+- story: Query Data 2
+  steps:
+  - intent: query_info
+  - action: action_user_details
+  - action: utter_did_that_help
+  - checkpoint: deny_checkoint
+
+- story: story with affirm checkpoint
+  steps:
+  - checkpoint: affirm_checkoint
+  - intent: affirm
+  - action: utter_happy
+
+- story: story with deny checkpoint
+  steps:
+  - checkpoint: deny_checkoint
+  - intent: deny
+  - action: utter_goodbye
+
